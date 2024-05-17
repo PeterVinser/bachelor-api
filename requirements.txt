@@ -5,3 +5,4 @@ langchain_openai==0.1.4
 langchain_community==0.0.36
 weaviate-client==4.4.4
 neo4j==5.20.0
+openai==1.12.0
