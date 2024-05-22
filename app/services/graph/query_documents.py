@@ -22,7 +22,7 @@ RETURN p, a
 The question is:
 {question}"""
 
-def handle_query(question):
+def handle_query(question, temperature):
 
     CYPHER_GENERATION_PROMPT = PromptTemplate(
         input_variables=["schema", "question"], template=CYPHER_GENERATION_TEMPLATE
@@ -30,8 +30,9 @@ def handle_query(question):
 
     graph = Neo4jGraph()
 
-    llm = ChatOpenAI(model='gpt-4-turbo-preview', temperature=0)
-    chain = GraphCypherQAChain.from_llm(graph=graph, llm=llm, cypher_prompt=CYPHER_GENERATION_PROMPT, verbose=True)
+    llm = ChatOpenAI(model='gpt-4o', temperature=0)
+    qa_llm = ChatOpenAI(model="gpt-4o", temperature=temperature)
+    chain = GraphCypherQAChain.from_llm(graph=graph, llm=llm, qa_llm=qa_llm, cypher_prompt=CYPHER_GENERATION_PROMPT, verbose=True)
 
     answer = chain.invoke({"query": question})
 
