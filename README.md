@@ -15,11 +15,16 @@ Header:
     - 0 - vector db based retrieval
     - 1 - graph based retrieval
     - 2 - fusion retrieval
+- X-OpenAI-Api-Key
+- X-Weaviate-Key
+- X-Neo4j-Password
+- X-Noe4j-Uri
+- X-Temperature
 
 Body:
 
 {
-    "question": <user question>
+    "question": <question>
 }
 
 ### Response
@@ -35,3 +40,7 @@ Body:
         }
     ]
 }
+
+## Environment variables
+- WEAVIATE_HOST
+- NOE4J_USERNAME

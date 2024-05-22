@@ -36,4 +36,4 @@ def handle_query(question, temperature):
 
     answer = chain.invoke({"query": question})
 
-    return jsonify({"answer": answer["result"]})
+    return jsonify({"answer": answer["result"], "context": []})

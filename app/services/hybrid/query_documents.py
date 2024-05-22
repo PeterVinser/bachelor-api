@@ -62,8 +62,4 @@ def handle_query(question, temperature):
 
     answer = AnswerGenerator(temperature).answer(question, context)
 
-    response = jsonify({"answer": answer})
-
-    response.headers['Chunk-Ids'] = str(chunk_ids)
-    
-    return response
+    return jsonify({"answer": answer, "context": chunk_ids})
