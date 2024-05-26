@@ -53,6 +53,8 @@ def handle_query(question, temperature):
 
     top_targets = get_top_targets(question, entities, embeddings, targets, k=10)
 
+    initial_entities = entities.copy()
+
     entities.extend(top_targets)
 
     with GraphStore() as graph:
@@ -62,4 +64,4 @@ def handle_query(question, temperature):
 
     answer = AnswerGenerator(temperature).answer(question, context)
 
-    return jsonify({"answer": answer, "context": chunk_ids})
+    return jsonify({"answer": answer, "context": chunk_ids, "initial_entities": initial_entities, "top_targets": top_targets})
