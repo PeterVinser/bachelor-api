@@ -14,7 +14,7 @@ class GraphStore:
         self.close()
 
     def get_relation_embeddings_with_targets(self, entities):
-        condition = [f"(e:{entity_type} AND e.id = '{id}')" for id, entity_type in entities]
+        condition = [f"(e:`{entity_type}` AND e.id = '{id}')" for id, entity_type in entities]
         
         where = " OR ".join(condition)
 
@@ -37,7 +37,7 @@ class GraphStore:
         condition = []
 
         for entity_id, entity_type in entities:
-            condition.append(f"(e:{entity_type} AND e.id = '{entity_id}')")
+            condition.append(f"(e:`{entity_type}` AND e.id = '{entity_id}')")
 
         where = " OR ".join(condition)
 
